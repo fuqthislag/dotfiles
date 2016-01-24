@@ -1,0 +1,149 @@
+#
+set $mod Mod4
+
+font pango:System San Francisco Display 10
+
+floating_modifier $mod
+
+bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Shift+q kill
+bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 340 -opacity "85" -bw 0 -bc "$bgc" -bg "$bgc" -fg "$tc" -hlbg "$bgc" -hlfg "$ubgc" -font "System San Francisco Display 18"
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+h split h
+bindsym $mod+v split v
+
+bindsym $mod+f fullscreen toggle
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+a focus parent
+
+set $ws1 "1 "
+set $ws2 "2 "
+set $ws3 "3 "
+set $ws4 "4 "
+set $ws5 "5 "
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10 "
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec i3-msg exit 
+
+mode "resize" {
+		bindsym Left resize shrink width 10 px or 10 ppt
+		bindsym Down resize grow height 10 px or 10 ppt
+		bindsym Up resize shrink height 10 px or 10 ppt
+		bindsym Right resize grow width 10 px or 10 ppt
+
+		bindsym Return mode "default"
+		bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+for_window [class="Skype"] floating enable
+for_window [class="Nautilus"] floating enable
+for_window [class="Pamac-updater"] floating enable
+for_window [class="Steam"] floating enable
+for_window [class="ViberPC"] floating enable
+
+assign [class="chromium"] $ws1
+assign [class="Firefox"] $ws1
+assign [class="URxvt"] $ws2
+assign [class="Gnome-terminal"] $ws2
+assign [class="Gedit"] $ws3
+assign [class="Evince"] $ws3
+assign [class="Kodi"] $ws4
+assign [class="Vlc"] $ws4
+assign [class="Steam"] $ws5
+assign [class="ViberPC"] $ws10
+assign [class="Skype"] $ws10
+
+hide_edge_borders both
+
+for_window [class="^.*"] border pixel 0 
+#gaps inner 3
+#gaps outer 2
+#smart_gaps on
+#smart_borders on
+
+set $bgc	#2f343f
+set $inbgc	#2f343f
+set $tc		#f3f4f5
+set $intc	#676e7d
+set $ubgc	#3cb5f8
+
+#                       border	background	text	indicator
+client.focused          $bgc	$bgc		$tc		$bgc
+client.unfocused        $inbgc  $inbgc		$intc	$bgc
+client.focused_inactive $inbgc  $inbgc		$intc	$bgc
+client.urgent           $ubgc	$ubgc		$tc		$bgc
+
+bar {
+		status_command i3blocks -c ~/.i3/i3blocks.conf
+		#status_command i3status -c ~/.i3/i3status
+		tray_output primary
+		colors {
+			background $bgc
+			separator #757575
+			#                  border	background	text
+			focused_workspace  $bgc		$bgc		$tc
+			inactive_workspace $inbgc	$inbgc		$intc
+			urgent_workspace   $ubgc	$ubgc		$tc
+		}
+		#position top
+}
+
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 1 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 1 -5% #decrease sound volume
+bindsym XF86AudioMute exec pactl set-sink-mute 1 toggle # mute sound
+
+#set $lock ~/.i3/scripts/lock.sh
+#bindsym $mod+l exec "$lock"
+exec xautolock -time 30 -locker 'systemctl suspend' &
+
+bindsym $mod+shift+c exec chromium --incognito
+bindsym $mod+shift+f exec nautilus
+
+exec synclient VertTwoFingerScroll=0 VertEdgeScroll=1
+exec --no-startup-id compton -f --config ~/.i3/compton.conf
+exec --no-startup-id setxkbmap us,el '' grp:lalt_lshift_toggle&
+exec_always ~/.fehbg 
