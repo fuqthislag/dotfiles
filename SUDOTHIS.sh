@@ -1,6 +1,6 @@
 #!/bin/sh
 # Copy pacman.conf
-ln -sf ~/dotfiles/pacman.conf /etc/
+ln -f ~/dotfiles/pacman.conf /etc/
 pacman-key -r 962DDE58
 pacman-key --lsign-key 962DDE58
 # Install yaourt
