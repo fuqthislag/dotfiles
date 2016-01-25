@@ -50,5 +50,11 @@ exit
 # User login
 nmtui #Wifi
 git clone https://github.com/fuqthislag/dotfiles
-cd dotfiles/
-sh INSTALL.sh
+# Run the scripts inside the dir
+#
+# For automatic login to virtual console
+sudo systemctl edit getty@tty1
+# and paste this 
+[Service]
+ExecStart=
+ExecStart=-/usr/bin/agetty --autologin username --noclear %I $TERM
