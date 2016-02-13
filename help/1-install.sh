@@ -1,7 +1,7 @@
 #!/bin/sh
 # Config pacman.conf
-sudo -v
-sudo echo '
+sudo chown $USER:wheel /etc/pacman.conf
+echo '
 [multilib]
 Include = /etc/pacman.d/mirrorlist
 
@@ -14,10 +14,13 @@ Server = http://bohoomil.com/repo/$arch
 
 [infinality-bundle-multilib]
 Server = http://bohoomil.com/repo/multilib/$arch' >> /etc/pacman.conf
+sudo chown root:root /etc/pacman.conf
 # Sign infinality
-sudo pacman-key -r 962DDE58 && sudo pacman-key --lsign-key 962DDE58
-# Install yaourt and infinality
-sudo pacman -Syu package-query yaourt infinality-bundle --noconfirm
+sudo pacman-key -r 962DDE58
+sudo pacman-key --lsign-key 962DDE58
+# Install infinality and yaourt
+sudo pacman -Syu infinality-bundle
+sudo pacman -S package-query yaourt --noconfirm
 # Symlink config's to root
 sudo ln -sf /home/*/dotfiles/.zshrc /home/*/dotfiles/.vimrc /root/
 #
@@ -47,9 +50,17 @@ ln -f ~/dotfiles/.config/gtk-3.0/* ~/.config/gtk-3.0/
 ln -f ~/dotfiles/.gtkrc-2.0 ~/
 # Terminal
 yaourt -Rns grml-zsh-config --noconfirm
-yaourt -S gnome-terminal oh-my-zsh-git zsh-completions-git --noconfirm
+yaourt -S gnome-terminal oh-my-zsh-git zsh-completions --noconfirm
 ln -f ~/dotfiles/.zshrc ~/dotfiles/.zlogin ~/dotfiles/.vimrc ~/
 # File manager
 yaourt -S xdg-user-dirs-gtk ranger atool p7zip tar unzip zip highlight poppler w3m --noconfirm
 # Chromium
 yaourt -S chromium chromium-pepper-flash --noconfirm
+#
+#--SCRIPT MERGE----
+#
+# xinit edit and startx
+head -n -1 ~/.xinitrc > ~/.xinitrc
+echo 'exec i3 &
+gnome-terminal -e ~/dotfiles/help/2-wall.sh' >> ~/.xinitrc
+startx
