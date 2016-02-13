@@ -1,4 +1,28 @@
 #!/bin/sh
+# Config pacman.conf
+sudo -v
+sudo echo '
+[multilib]
+Include = /etc/pacman.d/mirrorlist
+
+[archlinuxfr]
+SigLevel = Optional
+Server = http://repo.archlinux.fr/$arch
+
+[infinality-bundle]
+Server = http://bohoomil.com/repo/$arch
+
+[infinality-bundle-multilib]
+Server = http://bohoomil.com/repo/multilib/$arch' >> /etc/pacman.conf
+# Sign infinality
+sudo pacman-key -r 962DDE58 && sudo pacman-key --lsign-key 962DDE58
+# Install yaourt and infinality
+sudo pacman -Syu package-query yaourt infinality-bundle --noconfirm
+# Symlink config's to root
+sudo ln -sf /home/*/dotfiles/.zshrc /home/*/dotfiles/.vimrc /root/
+#
+#--SCRIPT MERGE----
+#
 # 2D/3D Accel, OpenGl, Video Accel
 yaourt -S xf86-video-ati mesa-libgl lib32-mesa-libgl mesa-vdpau lib32-mesa-vdpau libva-vdpau-driver lib32-libva-vdpau-driver --noconfirm
 # Touchpad
@@ -22,7 +46,7 @@ ln -f ~/dotfiles/.fonts/* ~/.fonts/
 ln -f ~/dotfiles/.config/gtk-3.0/* ~/.config/gtk-3.0/
 ln -f ~/dotfiles/.gtkrc-2.0 ~/
 # Terminal
-yaourt -Rns grml-zsh-config
+yaourt -Rns grml-zsh-config --noconfirm
 yaourt -S gnome-terminal oh-my-zsh-git zsh-completions-git --noconfirm
 ln -f ~/dotfiles/.zshrc ~/dotfiles/.zlogin ~/dotfiles/.vimrc ~/
 # File manager

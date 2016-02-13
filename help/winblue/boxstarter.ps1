@@ -16,18 +16,20 @@ cinst ccenhancer
 
 $env:PSModulePath = $env:PSModulePath + ";%userprofile%\AppData\Local\atom\bin"
 
-apm install color-picker
-apm install language-batch
-apm install language-generic-config
-apm install language-ini
-apm install language-powershell
-apm install minimap
-apm install minimap-cursorline
-apm install minimap-pigments
-apm install pigments
-apm install quick-highlight
-apm install sort-lines
-apm install multi-cursor-plus
+apm install color-picker language-batch language-generic-config language-ini language-powershell minimap minimap-cursorline minimap-pigments multi-cursor-plus pigments quick-highlight sort-lines
+
+#apm install color-picker
+#apm install language-batch
+#apm install language-generic-config
+#apm install language-ini
+#apm install language-powershell
+#apm install minimap
+#apm install minimap-cursorline
+#apm install minimap-pigments
+#apm install multi-cursor-plus
+#apm install pigments
+#apm install quick-highlight
+#apm install sort-lines
 
 Install-WindowsUpdate -acceptEula
 
