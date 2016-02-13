@@ -1,0 +1,17 @@
+@import url("/usr/share/themes/copernico/gnome-shell/gnome-shell.css");
+
+stage {
+  font-family: SFNS Display;
+}
+#panel {
+  text-shadow: 1px 1px 3px black;
+}
+#panel .panel-button {
+  font-weight: bold;
+}
+#panel .panel-button .app-menu-icon {
+  -st-icon-style: regular;
+}
+#dash {
+  border: 0px transparent;
+}
