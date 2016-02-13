@@ -60,7 +60,8 @@ yaourt -S chromium chromium-pepper-flash --noconfirm
 #--SCRIPT MERGE----
 #
 # xinit edit and startx
-head -n -1 ~/.xinitrc > ~/.xinitrc
+head -n -1 ~/.xinitrc > ~/.xinitrc2
+mv ~/.xinitrc2 ~/.xinitrc
 echo 'exec i3 &
 gnome-terminal -e ~/dotfiles/help/2-wall.sh' >> ~/.xinitrc
 startx
