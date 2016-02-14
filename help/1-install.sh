@@ -43,7 +43,7 @@ ln -f ~/dotfiles/.i3/* ~/.i3/
 yaourt -S compton i3blocks acpi bc lm_sensors playerctl sysstat rofi --noconfirm
 ln -f ~/dotfiles/.i3/scripts/* ~/.i3/scripts/
 # Themes and fonts
-yaourt -S lxappearance ttf-font-awesome gtk-theme-arc-git numix-circle-icon-theme-git --noconfirm
+yaourt -S feh imagemagick lxappearance ttf-font-awesome gtk-theme-arc-git numix-circle-icon-theme-git --noconfirm
 mkdir -p ~/.fonts ~/.config/gtk-3.0
 ln -f ~/dotfiles/.fonts/* ~/.fonts/
 ln -f ~/dotfiles/.config/gtk-3.0/* ~/.config/gtk-3.0/
