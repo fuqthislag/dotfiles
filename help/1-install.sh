@@ -1,19 +1,19 @@
 #!/bin/sh
 # Config pacman.conf
-sudo chown $USER:wheel /etc/pacman.conf
-echo '
+sudo chown "$USER":wheel /etc/pacman.conf
+echo "
 [multilib]
 Include = /etc/pacman.d/mirrorlist
 
 [archlinuxfr]
 SigLevel = Optional
-Server = http://repo.archlinux.fr/$arch
+Server = http://repo.archlinux.fr/\$arch
 
 [infinality-bundle]
-Server = http://bohoomil.com/repo/$arch
+Server = http://bohoomil.com/repo/\$arch
 
 [infinality-bundle-multilib]
-Server = http://bohoomil.com/repo/multilib/$arch' >> /etc/pacman.conf
+Server = http://bohoomil.com/repo/multilib/\$arch" >> /etc/pacman.conf
 sudo chown root:root /etc/pacman.conf
 # Sign infinality
 sudo pacman-key -r 962DDE58
@@ -59,15 +59,16 @@ yaourt -S chromium chromium-pepper-flash --noconfirm
 #
 #--SCRIPT MERGE----
 #
-# xinit edit and startx
+# Xinitrc edit to set Wallpaper on first start
 head -n -1 ~/.xinitrc > ~/.xinitrc2
-echo 'exec i3 &
+echo "exec i3 &
 PID=$!
 
 sleep 5
 if [ $(pidof i3) ]; then
-  gnome-terminal -e "/home/$USER/dotfiles/help/2-wall.sh"
+  gnome-terminal -e 'convert -size 1366x768 xc:#2f343f ~/Pictures/2f343f.png && feh --bg-fill ~/Pictures/2f343f.png && rm -rf ~/.xinitrc2'
 fi
 
-wait $PID' >> ~/.xinitrc2
+wait $PID" >> ~/.xinitrc2
+# Starting X for the first time
 startx ~/.xinitrc2
