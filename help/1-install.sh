@@ -61,7 +61,6 @@ yaourt -S chromium chromium-pepper-flash --noconfirm
 #
 # xinit edit and startx
 head -n -1 ~/.xinitrc > ~/.xinitrc2
-mv ~/.xinitrc2 ~/.xinitrc
 echo 'exec i3 &
 PID=$!
 
@@ -70,5 +69,5 @@ if [ $(pidof i3) ]; then
   gnome-terminal -e "/home/$USER/dotfiles/help/2-wall.sh"
 fi
 
-wait $PID' >> ~/.xinitrc
-startx
+wait $PID' >> ~/.xinitrc2
+startx ~/.xinitrc2
