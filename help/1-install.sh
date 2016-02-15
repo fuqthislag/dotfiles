@@ -4,7 +4,7 @@ _user=$(ls /home)
 # Autologin to vconsole
 echo "[Service]
 ExecStart=
-ExecStart=-/usr/bin/agetty --autologin username --noclear %I \$TERM" > /etc/systemd/system/getty@tty1.service.d/override.conf
+ExecStart=-/usr/bin/agetty --autologin $_user --noclear %I \$TERM" > /etc/systemd/system/getty@tty1.service.d/override.conf
 # Config pacman.conf
 echo "
 [multilib]
@@ -41,14 +41,14 @@ sudo -u "$_user" yaourt -S --noconfirm xorg-server xorg-xinit xautolock numlockx
 ln -f /home/"$_user"/dotfiles/.xinitrc /home/"$_user"/
 # Installing WM's
 sudo -u "$_user" yaourt -S --noconfirm i3-gaps-git
-mkdir -p /home/"$_user"/.i3/scripts
+sudo -u "$_user" mkdir -p /home/"$_user"/.i3/scripts
 ln -f /home/"$_user"/dotfiles/.i3/* /home/"$_user"/.i3/
 # WM's config's dependencies
 sudo -u "$_user" yaourt -S --noconfirm compton i3blocks acpi bc lm_sensors playerctl sysstat rofi
 ln -f /home/"$_user"/dotfiles/.i3/scripts/* /home/"$_user"/.i3/scripts/
 # Themes and fonts
 sudo -u "$_user" yaourt -S --noconfirm feh imagemagick lxappearance ttf-font-awesome gtk-theme-arc-git numix-circle-icon-theme-git
-mkdir -p /home/"$_user"/.fonts /home/"$_user"/.config/gtk-3.0
+sudo -u "$_user" mkdir -p /home/"$_user"/.fonts /home/"$_user"/.config/gtk-3.0
 ln -f /home/"$_user"/dotfiles/.fonts/* /home/"$_user"/.fonts/
 ln -f /home/"$_user"/dotfiles/.config/gtk-3.0/* /home/"$_user"/.config/gtk-3.0/
 ln -f /home/"$_user"/dotfiles/.gtkrc-2.0 /home/"$_user"/
@@ -70,7 +70,7 @@ PID=\$!
 
 sleep 5
 if [ \$(pidof i3) ]; then
-  gnome-terminal -x bash -c \"convert -size 1366x768 xc:#2f343f /home/$_user/Pictures/2f343f.png; feh --bg-fill /home/$_user/Pictures/2f343f.png; rm -rf /home/$_user/.xinitrc2; read -n1\"
+  gnome-terminal -x bash -c \"convert -size 1366x768 xc:#2f343f /home/$_user/Pictures/2f343f.png; feh --bg-fill /home/$_user/Pictures/2f343f.png; rm -rf /home/$_user/.xinitrc2; echo 'Noice!';read -n1\"
 fi
 
 wait \$PID" >> /home/"$_user"/.xinitrc2
