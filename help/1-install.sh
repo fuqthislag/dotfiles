@@ -66,13 +66,14 @@ sudo -u "$_user" yaourt -S --noconfirm chromium chromium-pepper-flash
 # Xinitrc edit to set Wallpaper on first start
 head -n -1 /home/"$_user"/.xinitrc > /home/"$_user"/.xinitrc2
 echo "exec i3 &
-PID=$!
+PID=\$!
 
 sleep 5
-if [ $(pidof i3) ]; then
-  gnome-terminal -e \"convert -size 1366x768 xc:#2f343f /home/$_user/Pictures/2f343f.png && feh --bg-fill /home/$_user/Pictures/2f343f.png && rm -rf /home/$_user/.xinitrc2\"
+if [ \$(pidof i3) ]; then
+  gnome-terminal -x bash -c \"convert -size 1366x768 xc:#2f343f /home/$_user/Pictures/2f343f.png; feh --bg-fill /home/$_user/Pictures/2f343f.png; rm -rf /home/$_user/.xinitrc2; read -n1\"
 fi
 
-wait $PID" >> /home/"$_user"/.xinitrc2
+wait \$PID" >> /home/"$_user"/.xinitrc2
+# && rm -rf /home/$_user/.xinitrc2
 # Starting X for the first time
-startx /home/"$_user"/.xinitrc2
+sudo -u "$_user" startx /home/"$_user"/.xinitrc2
