@@ -6,11 +6,11 @@ timedatectl set-ntp 1
 lsblk
 cfdisk
 # Format
-mkfs.ext4 /dev/sdxY 
+mkfs.ext4 /dev/sdxY
 mount /dev/sdaxY /mnt
-# 
+#
 # mkfs.fat -F32 /dev/sdxY #UEFI
-# 
+#
 # mkswap /dev/sdxY
 # swapon /dev/sdxY
 #
@@ -19,7 +19,7 @@ mount /dev/sdaxY /mnt
 #
 # Install the base system
 pacstrap /mnt base base-devel zsh grml-zsh-config gvim git
-# Generate fstab 
+# Generate fstab
 genfstab -p /mnt >> /mnt/etc/fstab
 # System config
 arch-chroot /mnt /bin/zsh
@@ -34,11 +34,11 @@ systemctl enable NetworkManager
 pacman -S grub os-prober intel-ucode
 grub-install /dev/sdx
 grub-mkconfig -o /boot/grub/grub.cfg
-# For UEFI 
+# For UEFI
 # pacman -S refind-efi
 # refind-install
 passwd
-# Umount and reboot 
+# Umount and reboot
 umount -R /mnt
 reboot
 # 1st boot (root login)
@@ -51,10 +51,3 @@ exit
 nmtui #Wifi
 git clone https://github.com/fuqthislag/dotfiles
 # Run the scripts inside the dir
-#
-# For automatic login to virtual console
-sudo systemctl edit getty@tty1
-# and paste this 
-[Service]
-ExecStart=
-ExecStart=-/usr/bin/agetty --autologin username --noclear %I $TERM

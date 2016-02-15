@@ -1,6 +1,11 @@
 #!/bin/sh
+# Get username to variable
+_user=$(ls /home)
+# Autologin to vconsole
+echo "[Service]
+ExecStart=
+ExecStart=-/usr/bin/agetty --autologin username --noclear %I \$TERM" > /etc/systemd/system/getty@tty1.service.d/override.conf
 # Config pacman.conf
-sudo chown "$USER":wheel /etc/pacman.conf
 echo "
 [multilib]
 Include = /etc/pacman.d/mirrorlist
@@ -14,61 +19,60 @@ Server = http://bohoomil.com/repo/\$arch
 
 [infinality-bundle-multilib]
 Server = http://bohoomil.com/repo/multilib/\$arch" >> /etc/pacman.conf
-sudo chown root:root /etc/pacman.conf
 # Sign infinality
-sudo pacman-key -r 962DDE58
-sudo pacman-key --lsign-key 962DDE58
+pacman-key -r 962DDE58
+pacman-key --lsign-key 962DDE58
 # Install infinality and yaourt
-sudo pacman -Syu infinality-bundle
-sudo pacman -S package-query yaourt --noconfirm
+pacman -Syu infinality-bundle
+pacman -S --noconfirm package-query yaourt
 # Symlink config's to root
-sudo ln -sf /home/*/dotfiles/.zshrc /home/*/dotfiles/.vimrc /root/
+ln -sf /home/"$_user"/dotfiles/.zshrc /home/"$_user"/dotfiles/.vimrc /root/
 #
 #--SCRIPT MERGE----
 #
 # 2D/3D Accel, OpenGl, Video Accel
-yaourt -S xf86-video-ati mesa-libgl lib32-mesa-libgl mesa-vdpau lib32-mesa-vdpau libva-vdpau-driver lib32-libva-vdpau-driver --noconfirm
+sudo -u "$_user" yaourt -S --noconfirm xf86-video-ati mesa-libgl lib32-mesa-libgl mesa-vdpau lib32-mesa-vdpau libva-vdpau-driver lib32-libva-vdpau-driver
 # Touchpad
-yaourt -S xf86-input-synaptics --noconfirm
+sudo -u "$_user" yaourt -S --noconfirm xf86-input-synaptics
 # Sound
-yaourt -S alsa-utils pulseaudio pulseaudio-alsa --noconfirm
+sudo -u "$_user" yaourt -S --noconfirm alsa-utils pulseaudio pulseaudio-alsa
 # Installing Xorg
-yaourt -S xorg-server xorg-xinit xautolock numlockx --noconfirm
-ln -f ~/dotfiles/.xinitrc ~/
+sudo -u "$_user" yaourt -S --noconfirm xorg-server xorg-xinit xautolock numlockx
+ln -f /home/"$_user"/dotfiles/.xinitrc /home/"$_user"/
 # Installing WM's
-yaourt -S i3-gaps-git --noconfirm
-mkdir -p ~/.i3/scripts
-ln -f ~/dotfiles/.i3/* ~/.i3/
+sudo -u "$_user" yaourt -S --noconfirm i3-gaps-git
+mkdir -p /home/"$_user"/.i3/scripts
+ln -f /home/"$_user"/dotfiles/.i3/* /home/"$_user"/.i3/
 # WM's config's dependencies
-yaourt -S compton i3blocks acpi bc lm_sensors playerctl sysstat rofi --noconfirm
-ln -f ~/dotfiles/.i3/scripts/* ~/.i3/scripts/
+sudo -u "$_user" yaourt -S --noconfirm compton i3blocks acpi bc lm_sensors playerctl sysstat rofi
+ln -f /home/"$_user"/dotfiles/.i3/scripts/* /home/"$_user"/.i3/scripts/
 # Themes and fonts
-yaourt -S feh imagemagick lxappearance ttf-font-awesome gtk-theme-arc-git numix-circle-icon-theme-git --noconfirm
-mkdir -p ~/.fonts ~/.config/gtk-3.0
-ln -f ~/dotfiles/.fonts/* ~/.fonts/
-ln -f ~/dotfiles/.config/gtk-3.0/* ~/.config/gtk-3.0/
-ln -f ~/dotfiles/.gtkrc-2.0 ~/
+sudo -u "$_user" yaourt -S --noconfirm feh imagemagick lxappearance ttf-font-awesome gtk-theme-arc-git numix-circle-icon-theme-git
+mkdir -p /home/"$_user"/.fonts /home/"$_user"/.config/gtk-3.0
+ln -f /home/"$_user"/dotfiles/.fonts/* /home/"$_user"/.fonts/
+ln -f /home/"$_user"/dotfiles/.config/gtk-3.0/* /home/"$_user"/.config/gtk-3.0/
+ln -f /home/"$_user"/dotfiles/.gtkrc-2.0 /home/"$_user"/
 # Terminal
-yaourt -Rns grml-zsh-config --noconfirm
-yaourt -S gnome-terminal oh-my-zsh-git zsh-completions --noconfirm
-ln -f ~/dotfiles/.zshrc ~/dotfiles/.zlogin ~/dotfiles/.vimrc ~/
+sudo -u "$_user" yaourt -Rns --noconfirm grml-zsh-config
+sudo -u "$_user" yaourt -S --noconfirm gnome-terminal oh-my-zsh-git zsh-completions
+ln -f /home/"$_user"/dotfiles/.zshrc /home/"$_user"/dotfiles/.zlogin /home/"$_user"/dotfiles/.vimrc /home/"$_user"/
 # File manager
-yaourt -S xdg-user-dirs-gtk ranger atool p7zip tar unzip zip highlight poppler w3m --noconfirm
+sudo -u "$_user" yaourt -S --noconfirm xdg-user-dirs-gtk ranger atool p7zip tar unzip zip highlight poppler w3m
 # Chromium
-yaourt -S chromium chromium-pepper-flash --noconfirm
+sudo -u "$_user" yaourt -S --noconfirm chromium chromium-pepper-flash
 #
 #--SCRIPT MERGE----
 #
 # Xinitrc edit to set Wallpaper on first start
-head -n -1 ~/.xinitrc > ~/.xinitrc2
+head -n -1 /home/"$_user"/.xinitrc > /home/"$_user"/.xinitrc2
 echo "exec i3 &
 PID=$!
 
 sleep 5
 if [ $(pidof i3) ]; then
-  gnome-terminal -e 'convert -size 1366x768 xc:#2f343f ~/Pictures/2f343f.png && feh --bg-fill ~/Pictures/2f343f.png && rm -rf ~/.xinitrc2'
+  gnome-terminal -e \"convert -size 1366x768 xc:#2f343f /home/$_user/Pictures/2f343f.png && feh --bg-fill /home/$_user/Pictures/2f343f.png && rm -rf /home/$_user/.xinitrc2\"
 fi
 
-wait $PID" >> ~/.xinitrc2
+wait $PID" >> /home/"$_user"/.xinitrc2
 # Starting X for the first time
-startx ~/.xinitrc2
+startx /home/"$_user"/.xinitrc2
