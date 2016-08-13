@@ -63,7 +63,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
+   export EDITOR='vim'
 # else
 #   export EDITOR='mvim'
 # fi
@@ -92,3 +92,6 @@ alias uni="pacaur -Rnsc"
 alias dep="pacaur -Rnsc $(pacaur -Qqdt | tr '\n' ' ')"
 alias dat="cat /var/log/pacman.log | grep installed"
 alias sea="pacaur -s"
+
+numlockx
+synclient VertTwoFingerScroll=0 VertEdgeScroll=1 TapButton1=1 TapButton2=3 TapButton3=2
