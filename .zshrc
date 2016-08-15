@@ -63,7 +63,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='vim'
+  export EDITOR='vim'
 # else
 #   export EDITOR='mvim'
 # fi
@@ -83,15 +83,21 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias i3c="vim ~/.i3/config"
-alias gupd="sudo grub-mkconfig -o /boot/grub/grub.cfg"
-alias gedt="sudo vim /etc/default/grub"
+# alias i3c="vim ~/.i3/config"
+# alias gupd="sudo grub-mkconfig -o /boot/grub/grub.cfg"
+# alias gedt="sudo vim /etc/default/grub"
+
 alias upd="pacaur -Syu --noconfirm"
 alias ins="pacaur -S"
 alias uni="pacaur -Rnsc"
 alias dep="pacaur -Rnsc $(pacaur -Qqdt | tr '\n' ' ')"
-alias dat="cat /var/log/pacman.log | grep installed"
 alias sea="pacaur -s"
+alias dat="cat /var/log/pacman.log | grep installed"
+alias loc="sudo updatedb && locate -i"
 
-numlockx
-synclient VertTwoFingerScroll=0 VertEdgeScroll=1 TapButton1=1 TapButton2=3 TapButton3=2
+alias bios="sudo systemctl reboot --firmware-setup"
+
+xset m 0 0
+
+# numlockx
+# synclient VertTwoFingerScroll=0 VertEdgeScroll=1 TapButton1=1 TapButton2=3 TapButton3=2
