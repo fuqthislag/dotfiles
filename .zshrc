@@ -91,8 +91,8 @@ alias upd="pacaur -Syu --noconfirm"
 alias ins="pacaur -S"
 alias uni="pacaur -Rnsc"
 alias dep="pacaur -Rnsc $(pacaur -Qqdt | tr '\n' ' ')"
-alias sea="pacaur -s"
 alias dat="cat /var/log/pacman.log | grep installed"
+alias sea="pacaur -s"
 alias loc="sudo updatedb && locate -i"
 
 alias bios="sudo systemctl reboot --firmware-setup"
@@ -101,3 +101,5 @@ xset m 0 0
 
 # numlockx
 # synclient VertTwoFingerScroll=0 VertEdgeScroll=1 TapButton1=1 TapButton2=3 TapButton3=2
+
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
