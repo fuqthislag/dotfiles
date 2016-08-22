@@ -4,21 +4,22 @@ interval=5
 while [ "1" -eq "1" ]; do
   current_temp=`nvidia-settings -t -q [GPU:0]/GPUCoreTemp`
   speed=0
-  if [ "$current_temp" -ge "40" ]; then
-    speed=50
-    if [ "$current_temp" -ge "50" ]; then
-      speed=60
-      if [ "$current_temp" -ge "60" ]; then
-        speed=75
-        if [ "$current_temp" -ge "70" ]; then
-          speed=87
-          if [ "$current_temp" -ge "80" ]; then
+  if [[ "$current_temp" -ge "40" ]]; then
+    speed=$current_temp
+    if [[ "$current_temp" -ge "50" ]]; then
+      speed=$((current_temp + 5))
+      if [[ "$current_temp" -ge "60" ]]; then
+        speed=$((current_temp + 12))
+        if [[ "$current_temp" -ge "70" ]]; then
+          speed=$((current_temp + 25))
+          if [[ "$speed" -ge "100" ]]; then
             speed=100
           fi
         fi
       fi
     fi
   fi
+  echo "GPUCoreTemp=$current_temp GPUTargetFanSpeed=$speed"
   eval "nvidia-settings -t -a [gpu:0]/GPUFanControlState=1 -a [fan:0]/GPUTargetFanSpeed=$speed"
   sleep "$interval"
 done
