@@ -94,11 +94,11 @@ alias dep="pacaur -Rnsc $(pacaur -Qqdt | tr '\n' ' ')"
 alias dat="expac --timefmt='%Y-%m-%d %T' '%l\t%w\t%n' | sort"
 alias loc="sudo updatedb && locate -i"
 
+# Rename multiple files
+autoload -U zmv
+alias mmv='noglob zmv -W'
+
 alias bios="sudo systemctl reboot --firmware-setup"
 
-xset m 0 0
-
-# numlockx
-# synclient VertTwoFingerScroll=0 VertEdgeScroll=1 TapButton1=1 TapButton2=3 TapButton3=2
-
+#Syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
