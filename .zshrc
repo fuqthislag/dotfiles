@@ -94,11 +94,15 @@ alias dep="pacaur -Rnsc $(pacaur -Qqdt | tr '\n' ' ')"
 alias dat="expac --timefmt='%Y-%m-%d %T' '%l\t%w\t%n' | sort"
 alias loc="sudo updatedb && locate -i"
 
+alias bios="sudo systemctl reboot --firmware-setup"
+
+alias tv="teamviewer --daemon start && teamviewer && teamviewer --daemon stop"
+
+alias temps="watch -n 3 'sensors | grep °C'"
+
 # Rename multiple files
 autoload -U zmv
 alias mmv='noglob zmv -W'
-
-alias bios="sudo systemctl reboot --firmware-setup"
 
 #Syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
