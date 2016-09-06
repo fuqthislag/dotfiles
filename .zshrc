@@ -20,6 +20,6 @@ alias tv="teamviewer --daemon start && teamviewer && teamviewer --daemon stop"
 alias temps="watch -n 3 'sensors | grep °C'"
 autoload -U zmv
 alias mmv='noglob zmv -W'
-alias mir="sudo reflector --age 8 --fastest 128 --latest 64 --number 32 --sort rate --save /etc/pacman.d/mirrorlist && pacaur -Syyu"
+alias mir="sudo reflector --threads 4 -p https -a 8 -f 128 -l 64 -n 32 --sort rate --save /etc/pacman.d/mirrorlist && pacaur -Syyu"
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
