@@ -1,5 +1,8 @@
 #!/bin/bash
 interval=5
+my_tmpdir=$(mktemp -d)
+trap 'rm -rf "$my_tmpdir"' 0
+mkfifo "$my_tmpdir/f"
 while true; do
   current_temp=$(nvidia-settings -t -q [GPU:0]/GPUCoreTemp)
   speed=0
@@ -20,5 +23,5 @@ while true; do
   fi
   echo "GPUCoreTemp=$current_temp GPUTargetFanSpeed=$speed"
   eval "nvidia-settings -t -a [GPU:0]/GPUFanControlState=1 -a [FAN:0]/GPUTargetFanSpeed=$speed"
-  sleep "$interval"
+  read -t "$interval" <>"$my_tmpdir/f"
 done
