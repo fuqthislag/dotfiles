@@ -1,13 +1,13 @@
-#!/bin/zsh
+#!/bin/shzsh
 
 mkdir -p /tmp/pacaur_install
 cd /tmp/pacaur_install
 
-curl -o PKGBUILD https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD\?h\=cower
+curl -o PKGBUILD https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=cower
 makepkg PKGBUILD --skippgpcheck
 sudo pacman -U cower*.tar.xz --noconfirm
 
-curl -o PKGBUILD https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD\?h\=pacaur
+curl -o PKGBUILD https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=pacaur
 makepkg PKGBUILD
 sudo pacman -U pacaur*.tar.xz --noconfirm
 
