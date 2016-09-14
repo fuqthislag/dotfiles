@@ -1,4 +1,4 @@
-#!/bin/shzsh
+#!/bin/sh
 
 mkdir -p /tmp/pacaur_install
 cd /tmp/pacaur_install
