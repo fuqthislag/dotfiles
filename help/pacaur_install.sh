@@ -1,5 +1,9 @@
 #!/bin/sh
 
+sudo pacman -Syu --noconfirm
+sudo pacman -S binutils make gcc fakeroot --noconfirm
+sudo pacman -S expac yajl git --noconfirm
+
 mkdir -p /tmp/pacaur_install
 cd /tmp/pacaur_install
 
