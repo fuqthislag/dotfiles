@@ -1,6 +1,8 @@
-# dotfiles
+# dotfiles - TODO
 
-TODO:
+Clean up and update:
 
-check win xml  
-check boxstarter script  
+help/0-arch.sh  
+help/1-install.sh  
+help/winblue/autounattend.xml  
+help/winblue/boxstarter.ps1  
