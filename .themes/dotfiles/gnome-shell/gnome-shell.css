@@ -4,14 +4,16 @@ stage {
   font-family: SFNS Display;
 }
 #panel {
-  text-shadow: 1px 1px 3px black;
+  /*text-shadow: 1px 1px 3px black;*/
+  background-color: rgba(0, 0, 0, 0.1);
 }
-#panel .panel-button {
+/*#panel .panel-button {
   font-weight: bold;
-}
+}*/
 #panel .panel-button .app-menu-icon {
   -st-icon-style: regular;
 }
 #dash {
   border: 0px transparent;
+  background-color: rgba(0, 0, 0, 0.1);
 }
