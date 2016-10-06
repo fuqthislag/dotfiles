@@ -6,6 +6,6 @@
 xset m 0 0
 #Screen Blanking Off
 xset s off
-#Suspend Screen after 600 seconds (10 minutes)
+#Suspend Screen after 900 seconds (15 minutes)
 sleep 10
 xset dpms 0 0 900
