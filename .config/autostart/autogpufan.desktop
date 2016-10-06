@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=AutoGPUFan
-GenericName=AutoGPUFan
-Comment=Automatic GPU Fan Speed
-Exec=/home/aggour/dotfiles/autogpufan
-Terminal=false
-Type=Application
-X-GNOME-Autostart-enabled=true

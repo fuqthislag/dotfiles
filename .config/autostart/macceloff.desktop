@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=MAccelOff
-GenericName=MAccelOff
-Comment=Mouse Accel Off
-Exec=xset m 0 0
-Terminal=false
-Type=Application
-X-GNOME-Autostart-enabled=true

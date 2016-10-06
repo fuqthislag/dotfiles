@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 interval=5
 my_tmpdir=$(mktemp -d)
 trap 'rm -rf "$my_tmpdir"' 0
