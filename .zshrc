@@ -1,19 +1,10 @@
-#source ~/.antigen.zsh
-source /home/aggour/.antigen.zsh
+export ZSH=/home/aggour/.oh-my-zsh
+ZSH_THEME="fishy"
 
-# Load the oh-my-zsh's library.
-antigen use oh-my-zsh
-# Bundles
-antigen bundle git
-antigen bundle sudo
-antigen bundle zsh-users/zsh-completions
-antigen bundle zsh-users/zsh-syntax-highlighting
-# Theme.
-antigen theme robbyrussell
-# Tell antigen that you're done.
-antigen apply
+plugins=(git sudo)
 
-export EDITOR=vim
+source $ZSH/oh-my-zsh.sh
+export EDITOR='vim'
 
 #alias i3c="vim ~/.i3/config"
 #alias gupd="sudo grub-mkconfig -o /boot/grub/grub.cfg"
@@ -32,4 +23,4 @@ alias tv="sudo systemctl start teamviewerd.service && teamviewer && sudo systemc
 
 autoload -U zmv
 alias mmv='noglob zmv -W'
-#rm -f ~/.zcompdump; compinit
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
