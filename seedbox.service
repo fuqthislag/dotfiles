@@ -1,0 +1,12 @@
+[Unit]
+Description=Seedbox Service
+After=network-online.target
+
+[Service]
+Type=forking
+User=aggour
+ExecStart=/bin/bash /home/aggour/dotfiles/seedbox.sh
+ExecStop=/usr/bin/tmux kill-session -t irc
+
+[Install]
+WantedBy=multi-user.target

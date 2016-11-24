@@ -19,7 +19,7 @@ alias mir="sudo reflector --threads 4 -p https -a 8 -f 128 -l 64 -n 32 --sort ra
 alias loc="sudo updatedb && locate -i"
 alias temps="watch -n 3 'sensors | grep °C'"
 alias tv="sudo systemctl start teamviewerd.service && teamviewer && sudo systemctl stop teamviewerd.service"
-#alias irc="sudo -u qbtuser tmux attach -t irc"
+#alias irc="tmux attach -t irc"
 
 autoload -U zmv
 alias mmv='noglob zmv -W'
