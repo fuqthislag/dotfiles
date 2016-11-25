@@ -20,6 +20,7 @@ alias loc="sudo updatedb && locate -i"
 alias temps="watch -n 3 'sensors | grep °C'"
 alias tv="sudo systemctl start teamviewerd.service && teamviewer && sudo systemctl stop teamviewerd.service"
 #alias irc="tmux attach -t irc"
+#alias ircc="cat irc.log | grep -viE 'has quit|has join|has left|h3r4ut|#funfile' && cat /var/log/cron-pacman.log && sudo rm /var/log/cron-pacman.log irc.log"
 
 autoload -U zmv
 alias mmv='noglob zmv -W'
