@@ -21,8 +21,8 @@ alias loc="sudo updatedb && locate -i"
 alias temps="watch -n 3 'sensors | grep °C'"
 alias tv="sudo systemctl start teamviewerd.service && teamviewer && sudo systemctl stop teamviewerd.service"
 #alias irc="tmux attach -t irc"
-#alias ircc="cat ~/irc.log | grep -viE 'has quit|has join|has left|h3r4ut|#funfile' && cat /var/log/cron-pacman.log"
-#alias ircd="sudo rm ~/irc.log /var/log/cron-pacman.log"
+#alias ircc="cat /home/$guy/.irssi/log/*/* | grep -viE 'has quit \(|has join #|has left|h3r4ut|/#funfile' && cat /var/log/cron-pacman.log"
+#alias ircd="sudo rm -r /home/$guy/.irssi/log/* /var/log/cron-pacman.log"
 #alias jour="journalctl -r -u sshd | grep -vi 192.168 | sed 's/from\ /from\n/g' | sed 's/\ port/\n\port/g' | grep -viE 'port|from|reboot|:' | uniq | sort"
 
 autoload -U zmv
