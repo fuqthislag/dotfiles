@@ -7,9 +7,9 @@ plugins=(git sudo)
 source $ZSH/oh-my-zsh.sh
 export EDITOR='vim'
 
-#alias i3c="vim ~/.i3/config"
-#alias gupd="sudo grub-mkconfig -o /boot/grub/grub.cfg"
-#alias gedt="sudo vim /etc/default/grub"
+# alias i3c="vim ~/.i3/config"
+# alias gupd="sudo grub-mkconfig -o /boot/grub/grub.cfg"
+# alias gedt="sudo vim /etc/default/grub"
 alias bios="sudo systemctl reboot --firmware-setup"
 alias upd="pacaur -Syu --noconfirm"
 alias ins="pacaur -S"
@@ -20,10 +20,10 @@ alias mir="sudo reflector --threads 4 -p https -a 8 -f 128 -l 64 -n 32 --sort ra
 alias loc="sudo updatedb && locate -i"
 alias temps="watch -n 3 'sensors | grep °C'"
 alias tv="sudo systemctl start teamviewerd.service && teamviewer && sudo systemctl stop teamviewerd.service"
-#alias irc="tmux attach -t irc"
-#alias ircc="cat /home/$guy/.irssi/log/*/* | grep -viE 'has quit \(|has join #|has left|h3r4ut|/#funfile' && cat /var/log/cron-pacman.log"
-#alias ircd="sudo rm -r /home/$guy/.irssi/log/* /var/log/cron-pacman.log"
-#alias jour="journalctl -r -u sshd | grep -vi 192.168 | sed 's/from\ /from\n/g' | sed 's/\ port/\n\port/g' | grep -viE 'port|from|reboot|:' | uniq | sort"
+# alias irc="tmux attach -t irc"
+# alias ircc="cat /home/$guy/.irssi/log/*/* | grep -viE 'has quit \(|has join #|has left|h3r4ut|/#funfile' && cat /var/log/cron-pacman.log"
+# alias ircd="sudo sh -c \"echo ' ' > /var/log/cron-pacman.log\" && echo ' ' > /home/$guy/.irssi/log/*/*"
+# alias jour="journalctl -r -u sshd | grep -vi 192.168 | sed 's/from\ /from\n/g' | sed 's/\ port/\n\port/g' | grep -viE 'port|from|reboot|:' | uniq | sort"
 
 autoload -U zmv
 alias mmv='noglob zmv -W'
