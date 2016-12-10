@@ -1,5 +1,5 @@
-guy=$(ls /home)
-export ZSH=/home/$guy/.oh-my-zsh
+guy=$(cd /home/* && pwd)
+export ZSH=$guy/.oh-my-zsh
 ZSH_THEME="fishy"
 
 plugins=(git sudo)
@@ -21,8 +21,8 @@ alias loc="sudo updatedb && locate -i"
 alias temps="watch -n 3 'sensors | grep °C'"
 alias tv="sudo systemctl start teamviewerd.service && teamviewer && sudo systemctl stop teamviewerd.service"
 # alias irc="tmux attach -t irc"
-# alias ircc="cat /home/$guy/.irssi/log/*/* | grep -viE 'has quit \(|has join #|has left|h3r4ut|/#funfile' && cat /var/log/cron-pacman.log"
-# alias ircd="sudo sh -c \"echo ' ' > /var/log/cron-pacman.log\" && echo ' ' > /home/$guy/.irssi/log/*/*"
+# alias ircc="cat /var/log/cron-pacman.log && cat $guy/.irssi/log/*/* | grep -viE 'has quit \(|has join #|has left|h3r4ut|/#funfile'"
+# alias ircd="sudo sh -c \"echo ' ' > /var/log/cron-pacman.log\" && echo ' ' > $guy/.irssi/log/*/*"
 # alias jour="journalctl -r -u sshd | grep -vi 192.168 | sed 's/from\ /from\n/g' | sed 's/\ port/\n\port/g' | grep -viE 'port|from|reboot|:' | uniq | sort"
 
 autoload -U zmv
