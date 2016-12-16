@@ -21,9 +21,10 @@ alias loc="sudo updatedb && locate -i"
 alias temps="watch -n 3 'sensors | grep °C'"
 alias tv="sudo systemctl start teamviewerd.service && teamviewer && sudo systemctl stop teamviewerd.service"
 # alias irc="tmux attach -t irc"
-# alias ircc="cat /var/log/cron-pacman.log && cat $guy/.irssi/log/*/* | grep -viE 'has quit \(|has join #|has left|h3r4ut|/#funfile'"
-# alias ircd="sudo sh -c \"echo ' ' > /var/log/cron-pacman.log\" && echo ' ' > $guy/.irssi/log/*/*"
-# alias jour="journalctl -r -u sshd | grep -vi 192.168 | sed 's/from\ /from\n/g' | sed 's/\ port/\n\port/g' | grep -viE 'port|from|reboot|:' | uniq | sort"
+# alias ircn="tmux -2 new-session -d -s irc /usr/bin/irssi"
+# alias logc="cat /var/log/cron-pacman.log | uniq && cat $guy/.irssi/log/*/* | grep -vi h3r4ut"
+# alias logd="sudo sh -c \"echo ' ' > /var/log/cron-pacman.log\" && echo ' ' > $guy/.irssi/log/*/*"
+# alias sship="journalctl -r -u sshd | grep -vi 192.168 | sed 's/from\ /from\n/g' | sed 's/\ port/\n\port/g' | grep -viE 'port|from|reboot|:' | uniq | sort"
 
 autoload -U zmv
 alias mmv='noglob zmv -W'
