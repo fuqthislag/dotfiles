@@ -1,4 +1,5 @@
 #!/bin/sh
+
 # Get username to variable
 _user=$(ls /home)
 # Autologin to vconsole

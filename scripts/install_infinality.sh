@@ -1,4 +1,5 @@
 #!/bin/sh
+
 # Config pacman.conf
 sudo echo "
 [multilib]

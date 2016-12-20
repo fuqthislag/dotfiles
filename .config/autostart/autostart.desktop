@@ -2,7 +2,7 @@
 Name=AutoStart
 GenericName=AutoStart
 Comment=AutoStart Scripts
-Exec=/home/aggour/dotfiles/autostart.sh
+Exec=/home/aggour/dotfiles/scripts/autostart.sh
 Terminal=false
 Type=Application
 X-GNOME-Autostart-enabled=true

@@ -1,8 +1,7 @@
-# dotfiles - TODO
+# dotfiles
+---
+## TODO
+##### Clean up and update:
 
-Clean up and update:
-
-help/0-arch.sh  
-help/1-install.sh  
-help/winblue/autounattend.xml  
-help/winblue/boxstarter.ps1  
+- scripts/old_arch_setup
+- scripts/old_setup_i3

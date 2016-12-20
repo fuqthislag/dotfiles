@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 interval=5
 my_tmpdir=$(mktemp -d)
