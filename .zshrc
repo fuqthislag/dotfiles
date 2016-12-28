@@ -15,7 +15,7 @@ alias upd="pacaur -Syu --noconfirm"
 alias ins="pacaur -S"
 alias uni="pacaur -Rnsc"
 alias dep="pacaur -Rnsc $(pacaur -Qqdt | tr '\n' ' ')"
-alias dat="expac --timefmt='%Y-%m-%d %T' '%l\t%w\t%n' | sort"
+alias dat="expac --timefmt='%y/%m/%d %R' '%l %w %n %G' | sort"
 alias mir="sudo reflector -f 64 -l 32 -n 16 -a 8 -p https --sort rate --save /etc/pacman.d/mirrorlist --verbose"
 alias loc="sudo updatedb && locate -i"
 alias temps="watch -n 3 'sensors | grep °C'"
@@ -24,7 +24,7 @@ alias tv="sudo systemctl start teamviewerd.service && teamviewer && sudo systemc
 # alias ircn="tmux -2 new-session -d -s irc /usr/bin/irssi"
 # alias logc="cat /var/log/cron-pacman.log | uniq && cat $guy/.irssi/log/*/* | grep -vi h3r4ut"
 # alias logd="sudo sh -c \"echo ' ' > /var/log/cron-pacman.log\" && echo ' ' > $guy/.irssi/log/*/*"
-# alias sship="journalctl -r -u sshd | grep -vi 192.168 | sed 's/from\ /from\n/g' | sed 's/\ port/\n\port/g' | grep -viE 'port|from|reboot|:' | uniq | sort"
+# alias sship="journalctl -r -u sshd | grep -viE '192\.168\.[0-9]+\.[0-9]+|0.0.0.0' | grep -ioE '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+' | sort | uniq"
 
 autoload -U zmv
 alias mmv='noglob zmv -W'
