@@ -15,7 +15,7 @@ alias upd="pacaur -Syu --noconfirm"
 alias ins="pacaur -S"
 alias uni="pacaur -Rnsc"
 alias dep="pacaur -Rnsc $(pacaur -Qqdt | tr '\n' ' ')"
-alias dat="expac --timefmt='%y/%m/%d %R' '%l %w %n %G' | sort"
+alias dat="expac --timefmt='%y/%m/%d %R' '%l %w Package:%n\tDepends:%N\tGroup:%G' | sort"
 alias mir="sudo reflector -f 64 -l 32 -n 16 -a 8 -p https --sort rate --save /etc/pacman.d/mirrorlist --verbose"
 alias loc="sudo updatedb && locate -i"
 alias temps="watch -n 3 'sensors | grep °C'"
@@ -29,3 +29,20 @@ alias tv="sudo systemctl start teamviewerd.service && teamviewer && sudo systemc
 autoload -U zmv
 alias mmv='noglob zmv -W'
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# pip zsh completion start
+function _pip_completion {
+  local words cword
+  read -Ac words
+  read -cn cword
+  reply=( $( COMP_WORDS="$words[*]" \
+             COMP_CWORD=$(( cword-1 )) \
+             PIP_AUTO_COMPLETE=1 $words[1] ) )
+}
+compctl -K _pip_completion pip
+# pip zsh completion end
+
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/PyProjects
+export VIRTUALENVWRAPPER_SCRIPT=/usr/bin/virtualenvwrapper.sh
+source /usr/bin/virtualenvwrapper_lazy.sh

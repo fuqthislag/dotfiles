@@ -1,9 +1,7 @@
 #!/bin/sh
 
-apm install autocomplete-python color-picker file-icons language-batch language-generic-config language-ini language-powershell language-viml minimap minimap-cursorline minimap-pigments multi-cursor-plus pigments python-indent quick-highlight sort-lines
+apm install file-icons language-batch language-generic-config language-ini language-powershell language-viml minimap minimap-cursorline minimap-pigments pigments sort-lines
 
-# autocomplete-python
-# color-picker
 # file-icons
 # language-batch
 # language-generic-config
@@ -13,11 +11,13 @@ apm install autocomplete-python color-picker file-icons language-batch language-
 # minimap
 # minimap-cursorline
 # minimap-pigments
-# multi-cursor-plus
 # pigments
-# python-indent
-# quick-highlight
 # sort-lines
+## color-picker
+## multi-cursor-plus
+## quick-highlight
+### autocomplete-python
+### python-indent
 
 cat <<EOT > ~/.atom/keymap.cson
 'atom-text-editor':
